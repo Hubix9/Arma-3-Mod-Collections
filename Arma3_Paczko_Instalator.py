@@ -1,4 +1,5 @@
 import json
+import urllib.request
 import time
 import sys
 import os
@@ -6,11 +7,9 @@ import wget
 import shutil
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-wget.download("https://github.com/Hubix9/Arma-3-Mod-Collections/releases/download/Var/vars.json")
-jsonfile = open(os.path.join(dir_path,"vars.json"))
-jsondata = json.load(jsonfile)
-jsonfile.close()
-os.remove(os.path.join(dir_path,"vars.json"))
+url = urllib.request.urlopen("https://raw.githubusercontent.com/Hubix9/Arma-3-Mod-Collections/master/vars.json")
+jsondata = json.load(url)
+print(jsondata)
 
 localappdatapath = os.path.expandvars("%LOCALAPPDATA%")
 
